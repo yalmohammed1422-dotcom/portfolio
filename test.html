@@ -1,0 +1,967 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI & Data Science Portfolio - Yousef Almohammed</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #0a0a0a;
+            color: #e4e4e7;
+            overflow-x: hidden;
+        }
+
+        .bg-gradient {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 50%, rgba(120, 119, 198, 0.15) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 80%, rgba(236, 72, 153, 0.15) 0%, transparent 50%);
+            z-index: -1;
+            animation: gradientShift 15s ease infinite;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 100px 20px 50px;
+        }
+
+        .hero h1 {
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 800;
+            background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 50%, #ec4899 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 20px;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero .subtitle {
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            color: #a1a1aa;
+            margin-bottom: 40px;
+            animation: fadeInUp 1s ease 0.2s backwards;
+        }
+
+        .hero .tagline {
+            font-size: clamp(1rem, 2vw, 1.3rem);
+            color: #71717a;
+            max-width: 800px;
+            line-height: 1.8;
+            animation: fadeInUp 1s ease 0.4s backwards;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Navigation */
+        nav {
+            position: sticky;
+            top: 20px;
+            background: rgba(24, 24, 27, 0.8);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50px;
+            padding: 15px 30px;
+            margin: 0 auto 60px;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            z-index: 100;
+            max-width: fit-content;
+        }
+
+        nav a {
+            color: #a1a1aa;
+            text-decoration: none;
+            padding: 10px 24px;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        nav a:hover {
+            color: #fff;
+            background: rgba(59, 130, 246, 0.2);
+        }
+
+        /* Section Styling */
+        section {
+            padding: 100px 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-header h2 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
+            background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 15px;
+        }
+
+        .section-header p {
+            color: #71717a;
+            font-size: 1.2rem;
+        }
+
+        /* Projects Grid */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 40px;
+        }
+
+        .project-card {
+            background: rgba(24, 24, 27, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(59, 130, 246, 0.5);
+            box-shadow: 0 20px 60px rgba(59, 130, 246, 0.2);
+        }
+
+        .project-header {
+            padding: 35px;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%);
+        }
+
+        .project-card h3 {
+            font-size: 1.8rem;
+            color: #fff;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .tech-stack {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .tech-tag {
+            background: rgba(59, 130, 246, 0.2);
+            color: #60a5fa;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 280px;
+            background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .project-content {
+            padding: 35px;
+        }
+
+        .project-description {
+            color: #a1a1aa;
+            line-height: 1.8;
+            margin-bottom: 25px;
+            font-size: 1.05rem;
+        }
+
+        .metrics {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin: 25px 0;
+            padding: 25px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 16px;
+        }
+
+        .metric {
+            text-align: center;
+        }
+
+        .metric-value {
+            font-size: 2rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .metric-label {
+            color: #71717a;
+            font-size: 0.9rem;
+            margin-top: 5px;
+        }
+
+        .code-block {
+            background: #0a0a0a;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 25px;
+            margin: 20px 0;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .code-header {
+            color: #60a5fa;
+            margin-bottom: 15px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .code-block pre {
+            color: #a1a1aa;
+            margin: 0;
+        }
+
+        /* Certificates Section */
+        #certificates {
+            background: rgba(24, 24, 27, 0.3);
+        }
+
+        .certs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .cert-card {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 35px;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cert-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6, #ec4899);
+        }
+
+        .cert-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(59, 130, 246, 0.5);
+        }
+
+        .cert-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .cert-card h3 {
+            color: #fff;
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .cert-issuer {
+            color: #60a5fa;
+            font-size: 1rem;
+            margin-bottom: 10px;
+        }
+
+        .cert-date {
+            color: #71717a;
+            font-size: 0.9rem;
+        }
+
+        /* Roadmap */
+        .roadmap {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .roadmap-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .roadmap-header h3 {
+            font-size: 2.5rem;
+            color: #fff;
+            margin-bottom: 10px;
+        }
+
+        .roadmap-item {
+            background: rgba(24, 24, 27, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-left: 4px solid #3b82f6;
+            border-radius: 16px;
+            padding: 25px;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .roadmap-item:hover {
+            border-left-color: #8b5cf6;
+            transform: translateX(5px);
+        }
+
+        .roadmap-item h4 {
+            color: #fff;
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+
+        .roadmap-meta {
+            color: #71717a;
+            font-size: 0.95rem;
+        }
+
+        .roadmap-meta span {
+            color: #60a5fa;
+            font-weight: 600;
+        }
+
+        /* Footer */
+        footer {
+            padding: 80px 0;
+            text-align: left;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        footer h2 {
+            font-size: 2.5rem;
+            color: #fff;
+            margin-bottom: 30px;
+        }
+
+        .contact-info {
+            color: #a1a1aa;
+            font-size: 1.1rem;
+            line-height: 2.5;
+        }
+
+        footer .copyright {
+            text-align: left;
+        }
+
+        .contact-info a {
+            color: #60a5fa;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .contact-info a:hover {
+            color: #3b82f6;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .metrics {
+                grid-template-columns: 1fr;
+            }
+
+            nav {
+                flex-wrap: wrap;
+                padding: 10px 20px;
+            }
+        }
+
+        /* Visualizations Section */
+        .viz-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .viz-project {
+            margin-bottom: 80px;
+        }
+
+        .viz-project-header {
+            text-align: center;
+            margin-bottom: 50px;
+            padding: 30px;
+            background: rgba(24, 24, 27, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+        }
+
+        .viz-project-header h3 {
+            font-size: 2.5rem;
+            color: #fff;
+            margin-bottom: 15px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #60a5fa 0%, #a78bfa 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .viz-project-header p {
+            color: #a1a1aa;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        .viz-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .viz-image-card {
+            background: rgba(24, 24, 27, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
+
+        .viz-image-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(139, 92, 246, 0.5);
+            box-shadow: 0 15px 40px rgba(139, 92, 246, 0.15);
+        }
+
+        .viz-image-wrapper {
+            width: 100%;
+            height: 350px;
+            background: #1a1a1d;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            padding: 15px;
+        }
+
+        .viz-image-wrapper img {
+            max-width: 100%;
+            max-height: 100%;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+
+        .viz-image-card:hover .viz-image-wrapper img {
+            transform: scale(1.05);
+        }
+
+        .viz-caption {
+            padding: 20px;
+            background: rgba(39, 39, 42, 0.5);
+        }
+
+        .viz-caption h4 {
+            font-size: 1.2rem;
+            color: #fff;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .viz-caption p {
+            color: #a1a1aa;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        @media (max-width: 768px) {
+            .viz-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .viz-project-header h3 {
+                font-size: 2rem;
+            }
+            
+            .viz-image-wrapper {
+                height: 250px;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="bg-gradient"></div>
+
+    <div class="container">
+        <!-- HERO SECTION -->
+        <section class="hero">
+            <h1>AI Engineer & Data Scientist</h1>
+            <p class="subtitle">Transforming Data into Intelligent Solutions</p>
+            <p class="tagline">
+                Specialized in machine learning, deep learning, and AI systems. 
+                Building cutting-edge models that solve complex problems with measurable impact.
+            </p>
+        </section>
+
+        <!-- NAVIGATION -->
+        <nav>
+            <a href="#about">About</a>
+            <a href="#projects">Projects</a>
+            <a href="#visualizations">Visualizations</a>
+            <a href="#certificates">Certifications</a>
+            <a href="#contact">Contact</a>
+        </nav>
+
+        <!-- ABOUT SECTION -->
+        <section id="about">
+            <div class="section-header">
+                <h2>About Me</h2>
+                <p>My journey in AI and Data Science</p>
+            </div>
+
+            <div style="max-width: 900px; margin: 0 auto; background: rgba(24, 24, 27, 0.6); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 24px; padding: 50px; line-height: 1.8; font-size: 1.1rem; color: #a1a1aa;">
+                <p style="margin-bottom: 20px;">
+                    Hello! I'm <strong style="color: #60a5fa;">Yousef Almohammed</strong>, a fresh graduate in <strong style="color: #60a5fa;">Computer Engineering</strong> with a specialization in <strong style="color: #60a5fa;">Internet of Things (IoT)</strong>. I'm passionate about transforming complex data into intelligent solutions that drive real-world impact.
+                </p>
+
+                <p style="margin-bottom: 20px;">
+                    Throughout my academic journey, I've developed a strong foundation in <strong style="color: #60a5fa;">Machine Learning, Deep Learning, and AI systems</strong>. My experience includes working on leak detection systems and digital solutions, where I gained hands-on experience integrating IoT sensors with intelligent analytics.
+                </p>
+
+                <p style="margin-bottom: 20px;">
+                    What drives me is the intersection of <strong style="color: #60a5fa;">hardware and software</strong> – building smart systems that can learn, adapt, and make decisions. From developing AI chatbots using OpenAI to creating deep learning models for medical image classification, I'm constantly exploring new ways to apply artificial intelligence to solve meaningful problems.
+                </p>
+
+                <p style="margin-bottom: 20px;">
+                    Currently, I'm focused on expanding my expertise in:
+                </p>
+                <ul style="margin-left: 30px; margin-bottom: 20px;">
+                    <li style="margin-bottom: 10px;">Natural Language Processing and Large Language Models</li>
+                    <li style="margin-bottom: 10px;">Computer Vision and Image Recognition</li>
+                    <li style="margin-bottom: 10px;">End-to-end Machine Learning deployment</li>
+                    <li style="margin-bottom: 10px;">IoT integration with AI systems</li>
+                </ul>
+
+                <p style="margin-bottom: 0;">
+                    I'm actively seeking opportunities to contribute to innovative AI projects where I can apply my technical skills and continue growing as a <strong style="color: #60a5fa;">Data Scientist and AI Engineer</strong>. Let's connect and build something amazing together!
+                </p>
+            </div>
+        </section>
+
+        <!-- PROJECTS SECTION -->
+        <section id="projects">
+            <div class="section-header">
+                <h2>Featured Projects</h2>
+                <p>Real-world applications of AI and Machine Learning</p>
+            </div>
+
+            <div class="projects-grid">
+                
+                <!-- PROJECT 1: AI CHATBOT WITH OPENAI -->
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>AI-Powered Customer Support Chatbot</h3>
+                        <div class="tech-stack">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Gemini API</span>
+                            <span class="tech-tag">NLP</span>
+                            <span class="tech-tag">Flask</span>
+                        </div>
+                    </div>
+                    
+                    <div class="project-image">🤖</div>
+
+                    <div class="project-content">
+                        <p class="project-description">
+                            Google Gemini AI for NLP, serverless automation, multi-intent detection (orders, products, returns, shipping), session-based conversation memory, 
+                            RESTful Flask API, mock customer database, comprehensive product catalog, and robust error handling.
+                        </p>
+
+
+                        <p class="project-description">
+                            <strong>Key Features:</strong> Context-aware conversations, sentiment analysis, 
+                            integration with mock order database, multi-language support, and conversation logging. 
+                            Deployed with rate limiting and fallback to human agents for complex queries.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- PROJECT 2: DEEP LEARNING IMAGE CLASSIFIER -->
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>Medical Image Classification with Deep Learning</h3>
+                        <div class="tech-stack">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">TensorFlow</span>
+                            <span class="tech-tag">Keras</span>
+                            <span class="tech-tag">CNN</span>
+                        </div>
+                    </div>
+                    
+                    <div class="project-image">🏥</div>
+                    
+                    <div class="project-content">
+                        <p class="project-description">
+                            Convolutional Neural Network (CNN) for classifying chest X-ray images to detect pneumonia. 
+                            Built and trained custom deep learning model achieving accuracy on test data. 
+                            Implemented data augmentation and transfer learning for improved performance.
+                        </p>
+                       
+                        <p class="project-description">
+                            <strong>Implementation Details:</strong> Used transfer learning with VGG16, 
+                            implemented class weight balancing for imbalanced dataset, and created visualization 
+                            tools using Grad-CAM for model interpretability. Assists radiologists in faster diagnosis.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- VISUALIZATIONS SECTION -->
+        <section id="visualizations">
+            <div class="section-header">
+                <h2>Data Visualizations</h2>
+                <p>Visual insights from my data science projects</p>
+            </div>
+
+            <div class="viz-container">
+                
+                <!-- PROJECT 1: Los Angeles Crime Analysis -->
+                <div class="viz-project">
+                    <div class="viz-project-header">
+                        <h3>Los Angeles Crime Analysis</h3>
+                        <p>A comprehensive data analysis project exploring crime patterns in Los Angeles, focusing on temporal trends, geographic hotspots, and victim demographics.</p>
+                    </div>
+
+                    <div class="viz-grid">
+                        
+                        <!-- Image 1 -->
+                        <div class="viz-image-card">
+                            <div class="viz-image-wrapper">
+                                <!-- ⭐ ADD YOUR IMAGE HERE ⭐ -->
+                                <img src="visualizations\crime_vis1.png" alt="Time period groupings (Early Morning, Morning, Afternoon, Evening)">
+                            </div>
+                            <div class="viz-caption">
+                                <h4>Time period groupings (Early Morning, Morning, Afternoon, Evening)</h4>
+                                <p>Identifies most dangerous time of day</p>
+                            </div>
+                        </div>
+
+                        <!-- Image 2 -->
+                        <div class="viz-image-card">
+                            <div class="viz-image-wrapper">
+                                <!-- ⭐ ADD YOUR IMAGE HERE ⭐ -->
+                                <img src="visualizations\crime_vis2.png" alt="Top 10 night crime locations">
+                            </div>
+                            <div class="viz-caption">
+                                <h4>Top 10 night crime locations</h4>
+                                <p>Reveals areas needing enhanced lighting/security</p>
+                            </div>
+                        </div>
+
+                        <!-- Image 3 -->
+                        <div class="viz-image-card">
+                            <div class="viz-image-wrapper">
+                                <!-- ⭐ ADD YOUR IMAGE HERE ⭐ -->
+                                <img src="visualizations\crime_vis3.png" alt="Raw age distribution histogram (with mean/median)">
+                            </div>
+                            <div class="viz-caption">
+                                <h4>Raw age distribution histogram (with mean/median)</h4>
+                                <p>Reveals age-specific victimization patterns</p>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+
+                <!-- PROJECT 2: Nobel Prize Winners Analysis -->
+                <div class="viz-project">
+                    <div class="viz-project-header">
+                        <h3>Nobel Prize Winners Analysis</h3>
+                        <p>A comprehensive data analysis project exploring Nobel Prize winner demographics, trends, and patterns across decades, countries, categories, and gender distributions.</p>
+                    </div>
+
+                    <div class="viz-grid">
+                        
+                        <!-- Image 1 -->
+                        <div class="viz-image-card">
+                            <div class="viz-image-wrapper">
+                                <!-- ⭐ ADD YOUR IMAGE HERE ⭐ -->
+                                <img src="visualizations\nobel_vis1.png" alt="Training Accuracy">
+                            </div>
+                            <div class="viz-caption">
+                                <h4>Bar chart with count labels</h4>
+                                <p>Reveals historical gender imbalance in Nobel Prize awards</p>
+                            </div>
+                        </div>
+
+                        <!-- Image 2 -->
+                        <div class="viz-image-card">
+                            <div class="viz-image-wrapper">
+                                <!-- ⭐ ADD YOUR IMAGE HERE ⭐ -->
+                                <img src="visualizations\nobel_vis2.png" alt="Confusion Matrix">
+                            </div>
+                            <div class="viz-caption">
+                                <h4>Horizontal bar chart of top 10 countries (highlighted winner)</h4>
+                                <p>Shows geographic concentration of Nobel Prize winners</p>
+                            </div>
+                        </div>
+
+                        <!-- Image 3 -->
+                        <div class="viz-image-card">
+                            <div class="viz-image-wrapper">
+                                <!-- ⭐ ADD YOUR IMAGE HERE ⭐ -->
+                                <img src="visualizations\nobel_vis3.png" alt="Grad-CAM">
+                            </div>
+                            <div class="viz-caption">
+                                <h4>Comparison of USA vs total winners by decade</h4>
+                                <p>Tracks the rise of USA scientific dominance</p>
+                            </div>
+                        </div>
+
+                        <!-- Image 4 -->
+                        <div class="viz-image-card">
+                            <div class="viz-image-wrapper">
+                                <!-- ⭐ ADD YOUR IMAGE HERE ⭐ -->
+                                <img src="visualizations\nobel_vis4.png" alt="ROC Curve">
+                            </div>
+                            <div class="viz-caption">
+                                <h4>Female proportion by decade (highlighted max)</h4>
+                                <p>Shows progress in gender equality over time</p>
+                            </div>
+                        </div>
+                        <!-- Image 5 -->
+                        <div class="viz-image-card">
+                            <div class="viz-image-wrapper">
+                                <!-- ⭐ ADD YOUR IMAGE HERE ⭐ -->
+                                <img src="visualizations\nobel_vis5.png" alt="ROC Curve">
+                            </div>
+                            <div class="viz-caption">
+                                <h4>Timeline of female winners with first woman marked</h4>
+                                <p>Historical milestone in Nobel Prize history</p>
+                            </div>
+                        </div>
+                        <!-- Image 6 -->
+                        <div class="viz-image-card">
+                            <div class="viz-image-wrapper">
+                                <!-- ⭐ ADD YOUR IMAGE HERE ⭐ -->
+                                <img src="visualizations\nobel_vis6.png" alt="ROC Curve">
+                            </div>
+                            <div class="viz-caption">
+                                <h4>Horizontal bar chart of repeat winners</h4>
+                                <p>Extremely rare achievement highlighting exceptional contributions</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- PROJECT 3: Netflix 1990s Movie Analysis -->
+                <div class="viz-project">
+                    <div class="viz-project-header">
+                        <h3>Netflix 1990s Movie Analysis</h3>
+                        <p>A data analysis project exploring Netflix movie data from the 1990s decade, focusing on movie durations and genre-specific characteristics.</p>
+                    </div>
+
+                    <div class="viz-grid">
+                        
+                        <!-- Image 1 -->
+                        <div class="viz-image-card">
+                            <div class="viz-image-wrapper">
+                                <!-- ⭐ ADD YOUR IMAGE HERE ⭐ -->
+                                <img src="visualizations\netfilx_vis1.png" alt="Training Accuracy">
+                            </div>
+                            <div class="viz-caption">
+                                <h4>Most Common Movie Duration in the 1990s</h4>
+                                <p>Identifies the most frequently occurring movie duration in the 1990s.</p>
+                            </div>
+                        </div>
+
+                        <!-- Image 2 -->
+                        <div class="viz-image-card">
+                            <div class="viz-image-wrapper">
+                                <!-- ⭐ ADD YOUR IMAGE HERE ⭐ -->
+                                <img src="visualizations\netfilx_vis2.png" alt="Confusion Matrix">
+                            </div>
+                            <div class="viz-caption">
+                                <h4>Count of Short Action Movies</h4>
+                                <p>Counts how many Action movies from the 1990s have a duration of less than 90 minutes.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                
+                <!-- PROJECT 4: NYC Schools SAT Performance Analysis -->
+                <div class="viz-project">
+                    <div class="viz-project-header">
+                        <h3>NYC Schools SAT Performance Analysis</h3>
+                        <p>A comprehensive data analysis project exploring SAT performance across New York City schools, focusing on math excellence, top-performing schools, and borough-level comparisons.</p>
+                    </div>
+
+                    <div class="viz-grid">
+                        
+                        <!-- Image 1 -->
+                        <div class="viz-image-card">
+                            <div class="viz-image-wrapper">
+                                <!-- ⭐ ADD YOUR IMAGE HERE ⭐ -->
+                                <img src="visualizations\NYC_School_vis1.png" alt="Training Accuracy">
+                            </div>
+                            <div class="viz-caption">
+                                <h4>Top 10 schools by math score</h4>
+                                <p>Identify schools excelling in mathematics</p>
+                            </div>
+                        </div>
+
+                        <!-- Image 3 -->
+                        <div class="viz-image-card">
+                            <div class="viz-image-wrapper">
+                                <!-- ⭐ ADD YOUR IMAGE HERE ⭐ -->
+                                <img src="visualizations\NYC_School_vis2.png" alt="Confusion Matrix">
+                            </div>
+                            <div class="viz-caption">
+                                <h4>Component breakdown for top 3 schools</h4>
+                                <p>Identify overall top-performing schools</p>
+                            </div>
+                        </div>
+
+                        <div class="viz-image-card">
+                            <div class="viz-image-wrapper">
+                                <!-- ⭐ ADD YOUR IMAGE HERE ⭐ -->
+                                <img src="visualizations\NYC_School_vis3.png" alt="Confusion Matrix">
+                            </div>
+                            <div class="viz-caption">
+                                <h4>Comprehensive 4-panel comparison (average, std dev, count, scatter plot)</h4>
+                                <p>Identify which borough has the most inconsistent SAT performance</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- CERTIFICATES SECTION -->
+        <section id="certificates">
+            <div class="section-header">
+                <h2>Certifications</h2>
+                <p>Continuous learning and professional development</p>
+            </div>
+
+            <div class="certs-grid">
+                
+                <div class="cert-card">
+                    <div class="cert-icon">🎓</div>
+                    <h3>AI Engineer for Data Scientists</h3>
+                    <p class="cert-issuer">Datacamp</p>
+                    <p class="cert-date">Train and fine-tune the latest AI models for production, including LLMs like Llama 3</p>
+                </div>
+
+                <div class="cert-card">
+                    <div class="cert-icon">🎓</div>
+                    <h3>Data Science</h3>
+                    <p class="cert-issuer">Datacamp</p>
+                    <p class="cert-date">Data science in Python, from data manipulation to Machine Learning.</p>
+                </div>
+
+                <div class="cert-card">
+                    <div class="cert-icon">🎓</div>
+                    <h3>Internet of Things</h3>
+                    <p class="cert-issuer">KFUPM University</p>
+                    <p class="cert-date">Building intelligent IoT systems that integrate sensing, computing, communication, and analytics to create smart applications for homes, cities, and industries.</p>
+                </div>
+
+                
+
+            </div>
+
+        </section>
+
+        <!-- CONTACT SECTION -->
+        <footer id="contact">
+            <h2>Get In Touch</h2>
+            <div class="contact-info">
+                <p>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style="display: inline-block; vertical-align: middle; margin-right: 8px;">
+                        <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                    </svg>
+                    Email: <a href="mailto:Y.almohammed1422@gmail.com">Y.almohammed1422@gmail.com</a>
+                </p>
+                <p>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style="display: inline-block; vertical-align: middle; margin-right: 8px;">
+                        <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/>
+                    </svg>
+                    LinkedIn: <a href="https://www.linkedin.com/in/yousef-almohammed" target="_blank">linkedin.com/in/yousef-almohammed</a>
+                </p>
+                <p>
+                    <svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor" style="display: inline-block; vertical-align: middle; margin-right: 8px;">
+                        <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
+                    </svg>
+                    GitHub: <a href="https://www.github.com/yalmohammed1422-dotcom" target="_blank">github.com/yalmohammed1422-dotcom</a>
+                </p>
+            </div>
+            <p class="copyright" style="margin-top: 40px; color: #71717a; font-size: 0.9rem;">
+                © 2025 Built with passion for Data Science, AI and Machine Learning
+            </p>
+        </footer>
+
+    </div>
+</body>
+</html>
